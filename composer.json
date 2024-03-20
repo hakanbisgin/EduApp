@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    },
+    "files": [
+      "helpers.php"
+    ]
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
+  }
+}
