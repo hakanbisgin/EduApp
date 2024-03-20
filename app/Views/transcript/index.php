@@ -40,39 +40,43 @@
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </form>
                 <br>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <?php foreach ($tableAttributes as $attribute): ?>
-                            <th><?= ucfirst(str_replace(["_", "id"], [" ", ""], $attribute)); ?></th>
-                        <?php endforeach; ?>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($transcript as $entity): ?>
+                <?php if ($transcript): ?>
+                    <table class="table">
+                        <thead>
                         <tr>
                             <?php foreach ($tableAttributes as $attribute): ?>
-                                <td><?= $entity[$attribute]; ?></td>
+                                <th><?= ucfirst(str_replace(["_", "id"], [" ", ""], $attribute)); ?></th>
                             <?php endforeach; ?>
-                            <td>
-                                <a href="/grades/<?= $entity['id']; ?>"
-                                   class="btn btn-primary">Show</a>
-                                <a href="/grades/<?= $entity['id']; ?>/edit"
-                                   class="btn btn-warning">Edit</a>
-                                <form action="/grades/<?= $entity['id']; ?>/delete" method="POST"
-                                      style="display: inline;">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                    <tr class="border-5 border-bottom-0 border-end-0 border-start-0">
-                        <td colspan="4">Weighted Average:</td>
-                        <td colspan="2"><?= array_sum(array_column($transcript, 'gpa_total_weight_ratio')); ?></td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($transcript as $entity): ?>
+                            <tr>
+                                <?php foreach ($tableAttributes as $attribute): ?>
+                                    <td><?= $entity[$attribute]; ?></td>
+                                <?php endforeach; ?>
+                                <td>
+                                    <a href="/grades/<?= $entity['id']; ?>"
+                                       class="btn btn-primary">Show</a>
+                                    <a href="/grades/<?= $entity['id']; ?>/edit"
+                                       class="btn btn-warning">Edit</a>
+                                    <form action="/grades/<?= $entity['id']; ?>/delete" method="POST"
+                                          style="display: inline;">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <tr class="border-5 border-bottom-0 border-end-0 border-start-0">
+                            <td colspan="4">Weighted Average:</td>
+                            <td colspan="2"><?= array_sum(array_column($transcript, 'gpa_total_weight_ratio')); ?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <h2 class="text-muted my-2">No grades found.</h2>
+                <?php endif; ?>
             </div>
         </div>
     </div>

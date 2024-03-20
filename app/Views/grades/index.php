@@ -41,36 +41,40 @@
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </form>
                 <br>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <?php foreach ($attributes as $attribute): ?>
-                            <th><?= ucfirst(str_replace(["_", "id"], [" ", ""], $attribute)); ?></th>
-                        <?php endforeach; ?>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($grades as $entity): ?>
+                <?php if ($grades): ?>
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <td><?= $entity['term']; ?></td>
-                            <td><?= $entity['course']; ?></td>
-                            <td><?= $entity['student']; ?></td>
-                            <td><?= $entity['grade']; ?></td>
-                            <td>
-                                <a href="/grades/<?= $entity['id']; ?>"
-                                   class="btn btn-primary">Show</a>
-                                <a href="/grades/<?= $entity['id']; ?>/edit"
-                                   class="btn btn-warning">Edit</a>
-                                <form action="/grades/<?= $entity['id']; ?>/delete" method="POST"
-                                      style="display: inline;">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <?php foreach ($attributes as $attribute): ?>
+                                <th><?= ucfirst(str_replace(["_", "id"], [" ", ""], $attribute)); ?></th>
+                            <?php endforeach; ?>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($grades as $entity): ?>
+                            <tr>
+                                <td><?= $entity['term']; ?></td>
+                                <td><?= $entity['course']; ?></td>
+                                <td><?= $entity['student']; ?></td>
+                                <td><?= $entity['grade']; ?></td>
+                                <td>
+                                    <a href="/grades/<?= $entity['id']; ?>"
+                                       class="btn btn-primary">Show</a>
+                                    <a href="/grades/<?= $entity['id']; ?>/edit"
+                                       class="btn btn-warning">Edit</a>
+                                    <form action="/grades/<?= $entity['id']; ?>/delete" method="POST"
+                                          style="display: inline;">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <h2 class="text-muted my-2">No grades found.</h2>
+                <?php endif; ?>
             </div>
         </div>
     </div>

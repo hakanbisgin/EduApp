@@ -8,7 +8,7 @@ $entity = ${$model->name}; ?>
                     <label for="<?= $attribute; ?>"><?= ucfirst($attribute); ?></label>
                     <input type="text" name="<?= $attribute; ?>" id="<?= $attribute; ?>"
                            value="<?= $entity[$attribute] ?>"
-                           class="form-control">
+                           class="form-control" required>
                 <?php endforeach; ?>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>

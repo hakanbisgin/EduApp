@@ -4,6 +4,7 @@
             <div class="col-12">
                 <h1><?= ucfirst($model->pluralName); ?></h1>
                 <a href="/<?= $model->pluralName; ?>/create" class="btn btn-primary">Create</a>
+                <?php if(${$model->pluralName}): ?>
                 <table class="table">
                     <thead>
                     <tr>
@@ -35,6 +36,9 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?php else: ?>
+                <h2 class="text-muted my-2">No <?= $model->pluralName; ?> found.</h2>
+                <?php endif; ?>
             </div>
         </div>
     </div>

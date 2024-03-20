@@ -20,7 +20,7 @@ class AuthController
     {
         if (authenticated()) {
             addMessage('You are already logged in');
-            back();
+            redirect('/');
         }
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -73,10 +73,11 @@ class AuthController
                     $error .= ucfirst($key) . ' can not be empty <br>';
                 }
             }
-            if ($error !== "") {
+            if ($error === "") {
                 (new User())->register(...$params);
-                back();
+                redirect('/login');
             }
+            throw new \Exception();
         } catch (\Exception $e) {
             addMessage($error);
             back();

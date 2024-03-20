@@ -1,5 +1,10 @@
 
+# EduApp
 
+EduApp is a simple web application.
+
+
+## Getting Started
 Requirements:
 - PHP 8.2
 - Composer

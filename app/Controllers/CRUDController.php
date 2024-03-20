@@ -49,13 +49,13 @@ class CRUDController
             foreach ($_POST as $key => $value) {
                 if (in_array($key, $this->model->attributes)) {
                     if (!empty($value)) {
-                        if ($value == "") {
+                        if (trim($value) === "") {
                             $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " is required <br>";
                         } else {
                             $params[$key] = $value;
                         }
                     } else {
-                        $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " can not be null <br>";
+                        $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " can not be empty <br>";
                     }
 
                 } else {
@@ -98,7 +98,7 @@ class CRUDController
             foreach ($_POST as $key => $value) {
                 if (in_array($key, $this->model->attributes)) {
                     if (!empty($value)) {
-                        if ($value == "") {
+                        if (trim($value) === "") {
                             $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " is required <br>";
                         } else {
                             $params[$key] = $value;
