@@ -46,22 +46,18 @@ class CRUDController
     {
         try {
             $error = "";
+            $params = [];
             foreach ($_POST as $key => $value) {
                 if (in_array($key, $this->model->attributes)) {
+                    $value = trim($value);
                     if (!empty($value)) {
-                        if (trim($value) === "") {
-                            $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " is required <br>";
-                        } else {
-                            $params[$key] = $value;
-                        }
+                        $params[$key] = $value;
                     } else {
                         $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " can not be empty <br>";
                     }
-
                 } else {
                     $error .= ucfirst(str_replace("_", " ", $key)) . " is not valid <br>";
                 }
-
             }
             if ($error !== "") {
                 $error .= "Please check your input and try again. <br>";
@@ -95,21 +91,18 @@ class CRUDController
     {
         try {
             $error = "";
+            $params = [];
             foreach ($_POST as $key => $value) {
                 if (in_array($key, $this->model->attributes)) {
+                    $value = trim($value);
                     if (!empty($value)) {
-                        if (trim($value) === "") {
-                            $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " is required <br>";
-                        } else {
-                            $params[$key] = $value;
-                        }
+                        $params[$key] = $value;
                     } else {
                         $error .= ucfirst(str_replace(["_", "id"], [" ", ""], $key)) . " can not be empty <br>";
                     }
                 } else {
                     $error .= ucfirst(str_replace("_", " ", $key)) . " is not valid <br>";
                 }
-
             }
             if ($error !== "") {
                 $error .= "Please check your input and try again. <br>";
